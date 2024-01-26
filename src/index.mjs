@@ -1,24 +1,4 @@
-import http from 'http';
-
-import {pool} from './services/db/index.mjs'
+import first from './apps/first/index.mjs'
 
 
-const server = new http.Server(async (req, res) => {
-
-  const {rows} = await pool.query(`
-    SELECT * FROM ingredients;
-  `)
-
-
-
-  res.statusCode = 200;
-
-  res.write(JSON.stringify({rows}));
-
-  return res.end();
-
-})
-
-server.listen(3001, () => {
-  console.log("http://localhost:3001")
-})
+first();
