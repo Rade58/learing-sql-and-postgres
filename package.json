@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "tq": "pnpm exec env TEST_QUERY_SERVER=true nodemon src/index.mjs",
-    "start": "pnpm exec node src/index.mjs",
+    "start": "pnpm exec nodemon src/index.mjs",
     "run-db": "docker run -e POSTGRES_PASSWORD=lol --name=pg --rm -d -p 5432:5432 postgres:14",
     "seed": "pnpm exec env SEED=true node src/index.mjs",
     "psql": "docker exec -u postgres -it pg psql",
