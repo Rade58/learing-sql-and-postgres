@@ -37,7 +37,7 @@ router.get("/search", async (req, res) => {
 router.get("/get", async function (req, res) {
   const recipeId = req.query.id ? req.query.id : 1;
 
-  const { rows: data } = await db.query(
+  const promiseone = db.query(
     /* sql */ `
     SELECT
       i.image AS ingredient_image,
@@ -54,7 +54,7 @@ router.get("/get", async function (req, res) {
     [recipeId],
   );
 
-  const { rows: photos } = await db.query(
+  const promisetwo = db.query(
     /* sql */ `
       SELECT
         r.title,
@@ -73,7 +73,12 @@ router.get("/get", async function (req, res) {
     [recipeId],
   );
 
-  return res.status(200).json({ data, photos });
+  return res.status(200).json(
+    (await Promise.all([promiseone, promisetwo])).map((i, j) => ({
+      photos: i.rows,
+      ingredients: j.rows,
+    })),
+  );
 });
 
 export default router;
