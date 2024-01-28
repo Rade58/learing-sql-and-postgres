@@ -16,7 +16,7 @@ router.get("/search", async (req, res) => {
       SELECT DISTINCT ON (r.recipe_id)
         r.recipe_id,
         r.title,
-        COALESCE(rp.url, 'default.png') AS first_photo
+        COALESCE(rp.url, 'default.png') AS photo
       FROM
         recipes r
       LEFT JOIN
