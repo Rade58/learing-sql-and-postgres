@@ -15,3 +15,5 @@
 ## How to use CONFLICT clause
 
 <https://dickyaryakesuma.medium.com/how-to-use-on-conflict-clause-in-postgresql-e4c43200646c>
+
+

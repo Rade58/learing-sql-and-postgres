@@ -4,6 +4,7 @@ import express from "express";
 
 // import testQueryServer from "./apps/test_query/index.mjs";
 import ingredientsRouter from "./apps/ingredients/index.mjs";
+import recipesRouter from "./apps/recipes/index.mjs";
 
 import { seed } from "./seed/index.mjs";
 
@@ -18,6 +19,7 @@ if (process.env.SEED) {
   app.get("/", (_, res) => res.sendFile(path.join(__dirname, "./index.html")));
 
   app.use("/ingredients", ingredientsRouter);
+  app.use("/recipes", recipesRouter);
 
   const PORT = process.env.PORT || 3000;
 
