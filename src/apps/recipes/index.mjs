@@ -35,9 +35,45 @@ router.get("/search", async (req, res) => {
 });
 
 router.get("/get", async function (req, res) {
-  //  /search?term=<>&page=<>
+  const recipeId = req.query.id ? req.query.id : 1;
 
-  return res.status(200).json({ rows: [] });
+  const { rows: data } = await db.query(
+    /* sql */ `
+    SELECT
+      i.image AS ingredient_image,
+      i.type AS ingredient_type,
+      i.title AS ingredient_title
+    FROM
+      recipe_ingredients ri
+    INNER JOIN
+      ingredients i
+    ON
+      ri.recipe_id = $1;
+
+  `,
+    [recipeId],
+  );
+
+  const { rows: photos } = await db.query(
+    /* sql */ `
+      SELECT
+        r.title,
+        r.body,
+        COALESCE(rp.url, 'default.jpg') AS photo_url
+      FROM
+        recipes r
+      LEFT JOIN
+        recipes_photos rp
+      ON
+        rp.recipe_id = r.recipe_id
+      WHERE
+        r.recipe_id = $1;
+
+    `,
+    [recipeId],
+  );
+
+  return res.status(200).json({ data, photos });
 });
 
 export default router;
