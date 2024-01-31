@@ -1,7 +1,7 @@
 version: "3"
 services:
   pgadmin:
-    image: dpage/pgadmin4:6.12
+    image: dpage/pgadmin4:8.2
     environment:
       PGADMIN_DEFAULT_EMAIL: kletka@doomer.com
       PGADMIN_DEFAULT_PASSWORD: comanche
