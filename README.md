@@ -17,3 +17,7 @@
 <https://dickyaryakesuma.medium.com/how-to-use-on-conflict-clause-in-postgresql-e4c43200646c>
 
 
+# Movie Database Image, for practicing SQL queries
+
+<https://github.com/Rade58/db-postgres-movies-image>
+
